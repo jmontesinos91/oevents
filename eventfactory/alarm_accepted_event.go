@@ -13,60 +13,17 @@ const (
 )
 
 type AlarmPayload struct {
-	Id          string `mapstructure:"id"`
-	IMEI        string `mapstructure:"imei"`
-	Description string `mapstructure:"description"`
-	Latitude    string `mapstructure:"latitude"`
-	Longitude   string `mapstructure:"longitude"`
-	Tenant      string `mapstructure:"tenant"`
-	Metadata    Event  `mapstructure:"metadata"`
-}
-
-type Event struct {
-	DetectionEventsID string    `mapstructure:"detection_events_id,omitempty"`
-	EventType         string    `mapstructure:"event_type"`
-	Provider          string    `mapstructure:"provider"`
-	Type              string    `mapstructure:"type"`
-	Confidence        float64   `mapstructure:"confidence"`
-	Camera            int       `mapstructure:"camera"`
-	Timestamp         time.Time `mapstructure:"timestamp"`
-	Data              Metadata  `mapstructure:"data"`
-	ExtraData         ExtraData `mapstructure:"extra_data"`
-}
-
-type Metadata struct {
-	Plate                string      `mapstructure:"plate"`
-	Color                string      `mapstructure:"color"`
-	Brand                string      `mapstructure:"brand"`
-	Model                interface{} `mapstructure:"model"`
-	Class                interface{} `mapstructure:"class"`
-	Speed                int         `mapstructure:"speed"`
-	Confidence           float64     `mapstructure:"confidence"`
-	Label                string      `mapstructure:"label"`
-	UpperBodyColor       string      `mapstructure:"upper_body_color"`
-	LowerBodyColor       string      `mapstructure:"lower_body_color"`
-	Gender               string      `mapstructure:"gender"`
-	Age                  int         `mapstructure:"age"`
-	Mask                 string      `mapstructure:"mask"`
-	QualityBlurriness    float64     `mapstructure:"quality_blurriness"`
-	QualityDark          float64     `mapstructure:"quality_dark"`
-	QualityLight         float64     `mapstructure:"quality_light"`
-	QualitySaturation    float64     `mapstructure:"quality_saturation"`
-	PredominantEmotion   string      `mapstructure:"predominant_emotion"`
-	PredominantEthnicity string      `mapstructure:"predominant_ethnicity"`
-	Occlusion            string      `mapstructure:"occlusion"`
-	Name                 string      `mapstructure:"name"`
-	Hair                 string      `mapstructure:"hair"`
-	Glasses              string      `mapstructure:"glasses"`
-	Accessory            string      `mapstructure:"accessory"`
-	Vehicle              string      `mapstructure:"vehicle"`
-	Country              string      `mapstructure:"country"`
-}
-
-type ExtraData struct {
-	Priority   string `mapstructure:"priority"`
-	MatchRules string `mapstructure:"matchedRules"`
-	Timestamp  int64  `mapstructure:"timestamp"`
+	Id               string `mapstructure:"id"`
+	IMEI             string `mapstructure:"imei"`
+	Description      string `mapstructure:"description"`
+	Latitude         string `mapstructure:"latitude"`
+	Longitude        string `mapstructure:"longitude"`
+	AlarmType        string `mapstructure:"alarmType"`
+	Waiting          string `mapstructure:"waiting"`
+	Attending        string `mapstructure:"attending"`
+	IsNotification   bool   `mapstructure:"notification"`
+	EventDate        string `mapstructure:"event_date"`
+	DetectionEventID string `mapstructure:"detection_event_id"`
 }
 
 func NewAlarmAcceptedEvent(source string, payload AlarmPayload) (*oevents.OmniViewEvent, error) {
